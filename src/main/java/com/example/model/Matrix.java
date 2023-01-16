@@ -18,6 +18,7 @@ public class Matrix {
 		this.nrows = data.length;
 		this.ncols = data[0].length;
 	}
+	
 
 	public Matrix(int nrow, int ncol) {
 		this.nrows = nrow;
@@ -76,7 +77,10 @@ public class Matrix {
 		return mat;
 	}
 
-
+         @Override
+	public int hashCode(){
+		return nrows*ncols;
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj) {
