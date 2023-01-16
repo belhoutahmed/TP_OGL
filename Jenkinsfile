@@ -41,6 +41,10 @@ pipeline {
           notifyEvents message: 'hi its me', token: 'TmeIlBZBNgWd1uKf8p2OdNWlBagvvKyc'
       }
     }
+    post {
+        failure {
+            mail bcc: '', body: '''Failure''', cc: '', from: '', replyTo: '', subject: 'Error', to: 'ja_belhout@esi.dz'
+        }
   }
 }
 
