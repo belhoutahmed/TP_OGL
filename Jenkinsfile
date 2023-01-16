@@ -11,6 +11,13 @@ pipeline {
           junit 'build/test-results/test/TEST-Matrix.xml'
       }
     }
+    stage('code analyse'){
+      steps{
+       withSonarQubeEnv('sonar') {
+          bat "gradle sonarqube"
+        }
+      }
+    }
 }
 
 }
