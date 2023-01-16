@@ -5,6 +5,10 @@ pipeline {
       steps{
         bat 'gradle build'
         archiveArtifacts 'build/test-results/'
+        cucumber reportTitle: 'Report',
+                   fileIncludePattern: 'target/report.json',
+                   trendsLimit: 10
+          junit 'build/test-results/test/TEST-Matrix.xml'
         
       }
     }
