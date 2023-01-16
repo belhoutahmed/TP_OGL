@@ -13,11 +13,35 @@ pipeline {
     }
     stage('code analyse'){
       steps{
-       withSonarQubeEnv('sonar') {
+        withSonarQubeEnv('sonar') {
           bat "gradle sonarqube"
         }
       }
     }
+    stage("code quality") {
+      steps {
+          waitForQualityGate abortPipeline: true
+      }
+    }
+    stage("build") {
+      steps {
+          bat "gradle build"
+          bat "gradle javadoc"
+          archiveArtifacts 'build/libs/*.jar'
+          archiveArtifacts 'build/docs/'
+      }
+    }
+    stage("deployement") {
+      steps {
+          bat "gradle publish" 
+      } 
+    }  
+    stage("notification") {
+      steps {
+          notifyEvents message: 'hi its me', token: 'TmeIlBZBNgWd1uKf8p2OdNWlBagvvKyc'
+      }
+    }
+  }
 }
 
 }
