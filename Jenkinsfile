@@ -4,10 +4,11 @@ pipeline {
      stage ('test') {
       steps{
           bat 'gradle test'
-        cucumber reportTitle: 'Report',
-                   fileIncludePattern: 'target/report.json',
-                   trendsLimit: 10
-          junit 'build/test-results/test/TEST-Matrix.xml'
+        junit  'build/test-results/**/*.xml'
+          //cucumber reportTitle: 'Report',
+                   //fileIncludePattern: 'target/report.json',
+                  // trendsLimit: 10
+          //junit 'build/test-results/test/TEST-Matrix.xml'
     
       }
     }
