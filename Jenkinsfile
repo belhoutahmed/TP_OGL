@@ -44,7 +44,7 @@ pipeline {
     post {
         failure {
             mail bcc: '', body: '''Failure''', cc: '', from: '', replyTo: '', subject: 'Error', to: 'ja_belhout@esi.dz'
-        }
+        } 
   }
   }
 }
